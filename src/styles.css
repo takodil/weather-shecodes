@@ -1,0 +1,23 @@
+.search-input {
+  display: inline;
+  width: 80%;
+}
+.today i {
+  font-size: 150px;
+}
+.today .temp {
+  font-size: 80px;
+}
+.today .main,
+.today .subsection {
+  margin-top: 30px;
+}
+.today .subsection p {
+  margin-bottom: 0px;
+}
+.next-days .col {
+  padding: 0;
+}
+.next-days {
+  margin: auto;
+}
