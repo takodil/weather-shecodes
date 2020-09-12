@@ -27,17 +27,17 @@ function searchCity(event) {
   }
 }
 
-// function handlePosition(position) {
-//   let lat = position.coords.latitude;
-//   let lon = position.coords.longitude;
-//   let apiCityUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&units=${unit}&lon=${lon}&lat=${lat}`;
-//   axios.get(`${apiCityUrl}`).then(showTemp);
-// }
+function handlePosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiCityUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&units=${unit}&lon=${lon}&lat=${lat}`;
+  axios.get(`${apiCityUrl}`).then(showTemp);
+}
 
-// function currentCity(response) {
-//   event.preventDefault();
-//   navigator.geolocation.getCurrentPosition(handlePosition);
-// }
+function currentCity(response) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(handlePosition);
+}
 
 function minuteFormatter(min) {
   var temp = min;
@@ -67,5 +67,5 @@ currentTime.innerHTML = `${day}, ${hours}:${minuteFormatter(minutes)}`;
 let searchButton = document.querySelector("#search-button");
 searchButton.addEventListener("click", searchCity);
 
-// let myLocationButton = document.querySelector("#my-location-button");
-// searchButton.addEventListener("click", currentCity);
+let myLocationButton = document.querySelector("#my-location-button");
+myLocationButton.addEventListener("click", currentCity);
