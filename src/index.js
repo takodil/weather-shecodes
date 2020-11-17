@@ -1,19 +1,27 @@
 function showTemp(response) {
+  console.log(response.data);
   let cityName = document.querySelector("#city-name");
   let cityTemp = document.querySelector("#current-temp");
   let cityWind = document.querySelector("#current-wind");
   let cityHumidity = document.querySelector("#current-humidity");
   let cityFeelsLike = document.querySelector("#current-feels-like");
+  let cityWeatherIcon = document.querySelector("#selected-weather-icon");
+  let cityWeatherDescription = document.querySelector("#weather-description");
   let searchedCity = response.data.name;
   let searchedCityTemp = Math.round(response.data.main.temp);
   let searchedCityWind = response.data.wind.speed;
   let searchedCityHumidity = response.data.main.humidity;
   let searchedCityFeelsLike = Math.round(response.data.main.feels_like);
+  let searchedWeatherIcon = response.data.weather[0].icon;
+  let searchedWeatherDescription = response.data.weather[0].description;
+
   cityName.innerHTML = searchedCity;
   cityTemp.innerHTML = `${searchedCityTemp}°`;
   cityWind.innerHTML = `${searchedCityWind}m/s`;
   cityHumidity.innerHTML = `${searchedCityHumidity}%`;
   cityFeelsLike.innerHTML = `${searchedCityFeelsLike}°`;
+  cityWeatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${searchedWeatherIcon}@2x.png`);
+  cityWeatherDescription.innerHTML = searchedWeatherDescription;
 }
 
 function searchCity(event) {
