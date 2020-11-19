@@ -20,33 +20,37 @@
             <div class="col-4">
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control search-input" id="city-search-input"
-                            placeholder="Search city" />
+                        <input type="text" class="search-input mb-3" id="city-search-input"
+                            placeholder="Type a city..." />
                         <i class="fas fa-search" id="search-button"></i>
                         <button id="my-location-button">My Location</button>
                     </div>
                 </form>
                 <h1 id="city-name">
-                    BERLIN
                 </h1>
-                <h2 id="current-time">Monday, 03.08.2020</h2>
-                <p id="weather-description">Cloudy as shit</p>
+                <h2 id="current-time"></h2>
+                <p id="weather-description"></p>
                 <div class="row today">
                     <div class="col-6 main">
-                        <!-- <i class="fas fa-sun"></i> -->
-                        <img id="selected-weather-icon" src="http://openweathermap.org/img/wn/50n@2x.png" alt="Sunny">
-                        <br />
-                        <p class="temp" id="current-temp">23<span>&#176;</span></p>
+                        <div class="weather-temperature">
+                            <img id="selected-weather-icon" src="http://openweathermap.org/img/wn/50n@2x.png" alt="Sunny">
+                            <br />
+                            <strong class="temp" id="current-temp"></strong>
+                            <span class="units">
+                                <a href="#" id="celcius-link" class="active">°C</a> |
+                                <a href="#" id="fahrenheit-link">°F</a>
+                            </span>
+                        </div>
                     </div>
                     <div class="col-6 subsection">
                         <h3>Wind</h3>
-                        <p id="current-wind">3,6 m/s</p>
+                        <p id="current-wind"></p>
                         <br />
                         <h3>Humidity</h3>
-                        <p id="current-humidity">59%</p>
+                        <p id="current-humidity"></p>
                         <br />
-                        <h3>Feels like</h3>
-                        <p id="current-feels-like">10°</p>
+                        <!-- <h3>Feels like</h3>
+                        <p id="current-feels-like">10°</p> -->
                     </div>
                 </div>
                 <hr>

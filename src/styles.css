@@ -1,6 +1,14 @@
+#search-button{
+  cursor: pointer;
+}
+.units{
+    font-size: 15px;
+    vertical-align: top;
+}
 .search-input {
   display: inline;
   width: 80%;
+  margin-bottom: 12px;
 }
 .today i {
   font-size: 150px;
@@ -20,4 +28,12 @@
 }
 .next-days {
   margin: auto;
+}
+.weather-temperature .active{
+  color: rgb(33, 33, 33);
+  cursor: default;
+}
+
+.weather-temperature .active:hover{
+  text-decoration: none;
 }

@@ -11,25 +11,28 @@ function showTemp(response) {
   let searchedCityTemp = Math.round(response.data.main.temp);
   let searchedCityWind = response.data.wind.speed;
   let searchedCityHumidity = response.data.main.humidity;
-  let searchedCityFeelsLike = Math.round(response.data.main.feels_like);
+  // let searchedCityFeelsLike = Math.round(response.data.main.feels_like);
   let searchedWeatherIcon = response.data.weather[0].icon;
   let searchedWeatherDescription = response.data.weather[0].description;
 
   cityName.innerHTML = searchedCity;
-  cityTemp.innerHTML = `${searchedCityTemp}°`;
+  cityTemp.innerHTML = `${searchedCityTemp}`;
   cityWind.innerHTML = `${searchedCityWind}m/s`;
   cityHumidity.innerHTML = `${searchedCityHumidity}%`;
-  cityFeelsLike.innerHTML = `${searchedCityFeelsLike}°`;
+  // cityFeelsLike.innerHTML = `${searchedCityFeelsLike}°`;
   cityWeatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${searchedWeatherIcon}@2x.png`);
   cityWeatherDescription.innerHTML = searchedWeatherDescription;
 }
 
-function searchCity(event) {
-  event.preventDefault();
+function showCity(city) {
+  let apiCityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
+  axios.get(`${apiCityUrl}`).then(showTemp);
+}
+
+function searchCity(){
   let city = document.querySelector("#city-search-input");
-  let apiCityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=${unit}`;
   if (city.value) {
-    axios.get(`${apiCityUrl}`).then(showTemp);
+    showCity(city.value);
   } else {
     alert("Please enter a city");
   }
@@ -51,6 +54,23 @@ function minuteFormatter(min) {
   var temp = min;
   temp += (min < 10 ? ":0" : ":") + min;
   return temp;
+}
+
+function convertToFahrenheit(event){
+  event.preventDefault();
+  let currentTemp = document.querySelector("#current-temp");
+  celciusConvertLink.classList.remove("active");
+  fahrenheitConvertLink.classList.add("active");
+  let tempFahrenheit = (currentTemp.innerHTML * 9) / 5 + 32;
+  currentTemp.innerHTML = Math.round(tempFahrenheit);
+}
+
+function displayCelciusTemp(event){
+  event.preventDefault();
+  let tempCelcius = document.querySelector("#current-temp");
+  celciusConvertLink.classList.add("active");
+  fahrenheitConvertLink.classList.remove("active");
+  tempCelcius.innerHTML = Math.round(response.data.main.temp);
 }
 
 let now = new Date();
@@ -77,3 +97,11 @@ searchButton.addEventListener("click", searchCity);
 
 let myLocationButton = document.querySelector("#my-location-button");
 myLocationButton.addEventListener("click", currentCity);
+
+let fahrenheitConvertLink = document.querySelector("#fahrenheit-link");
+fahrenheitConvertLink.addEventListener("click", convertToFahrenheit);
+
+let celciusConvertLink = document.querySelector("#celcius-link");
+celciusConvertLink.addEventListener("click", displayCelciusTemp);
+
+showCity("Berlin");
