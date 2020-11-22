@@ -13,6 +13,9 @@
 .today i {
   font-size: 150px;
 }
+.today h3 {
+  font-size: 22px;
+}
 .today .temp {
   font-size: 80px;
 }
