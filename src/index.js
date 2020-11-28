@@ -14,8 +14,10 @@ function showTemp(response) {
   let searchedCityFeelsLike = Math.round(response.data.main.feels_like);
   let searchedWeatherIcon = response.data.weather[0].icon;
   let searchedWeatherDescription = response.data.weather[0].description;
-
-  currentTime.innerHTML = `${formatDateResponse(response.data.dt * 1000)}`;
+  currentTime.innerHTML = null;
+  currentTime.innerHTML = `${formatDateResponse(
+    response.data.dt * 1000 + response.data.timezone * 1000
+  )}`;
   cityName.innerHTML = searchedCity;
   cityTemp.innerHTML = `${celsiusTemperature}`;
   cityWind.innerHTML = `${searchedCityWind}m/s`;
@@ -154,4 +156,4 @@ fahrenheitConvertLink.addEventListener("click", convertToFahrenheit);
 let celciusConvertLink = document.querySelector("#celcius-link");
 celciusConvertLink.addEventListener("click", displayCelciusTemp);
 
-showCity("Berlin");
+showCity("Tokyo");
